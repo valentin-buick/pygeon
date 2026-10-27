@@ -1,0 +1,49 @@
+[project]
+name = "pygeon"
+version = "0.1.0"
+description = "Generate PDF business letters conforming to DIN 5008"
+readme = "README.md"
+authors = [
+    { name = "Valentin Buick", email = "valentin.buick@gmx.de" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "markdown-it-py>=4.2.0",
+    "pydantic>=2.14.1",
+    "pymupdf>=2.0",
+    "pyyaml>=6.0.3",
+    "reportlab>=5.1.0",
+    "typer>=0.27.3",
+]
+
+[project.scripts]
+pygeon = "pygeon.cli:app"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pygeon"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.3",
+]
